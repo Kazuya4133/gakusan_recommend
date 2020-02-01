@@ -1,39 +1,40 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
-  <title>学参レコメンド！</title>
-</head>
+@extends('layouts.app')
 <body>
-	<header>
-		<nav class="flex items-center justify-between flex-wrap bg-gray-900 p-4">
-		<div class="flex items-center flex-shrink-0 text-white mr-6">
-			<a href="#" class="font-semibold text-xl tracking-tight">学参レコメンド！</span>
-		</div>
+	@section('content')
+	<main class="py-4">
+		<div class="px-4">
+			<div class="block md:flex justify-between md:-mx-2">
+				@foreach($posts as $post)
+					<div class="w-full lg:w-1/3 md:mx-2 mb-4 md:mb-0">
+						<div class="bg-white rounded-lg overflow-hidden shadow relative">
+							<img class="h-56 w-full object-cover object-center" src="https://images.unsplash.com/photo-1457282367193-e3b79e38f207?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1654&q=80" alt="">
+							<div class="p-4 h-auto md:h-40 lg:h-48">
+								<a href="#" class="block text-blue-500 hover:text-blue-600 font-semibold mb-2 text-lg md:text-base lg:text-lg">
+									タイトル：{{ $post->title }}<br>
+								</a>
+								評価：{{ $post->stars }}<br>
+								<div class="text-gray-600 text-sm leading-relaxed block md:text-xs lg:text-sm">
+									コメント：{{ $post->comment }}<br>
+								</div>
+								<div class="relative mt-2 lg:absolute bottom-0 mb-4 md:hidden lg:block">
+									<a class="inline bg-gray-300 py-1 px-2 rounded-full text-xs lowercase text-gray-700" href="#">カテゴリー：{{ $post->category_id }}</a>
+								</div>
+								<div class="flex items-center">
+      						<img class="w-10 h-10 rounded-full mr-4" src="https://pbs.twimg.com/profile_images/885868801232961537/b1F6H4KC_400x400.jpg" alt="">
+      						<div class="text-sm">
+        						<p class="text-black leading-none">ユーザー名：</p>
+        						<p class="text-grey-dark">タイプ：</p>
+      						</div>
+    						</div>
+							</div>
+						</div>
+					</div>
+					@endforeach
 				<div>
-				<a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">ログイン</a>
-				<a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">新規登録</a>
+					{{ $posts->links() }}
 				</div>
-		</div>
-		</nav>
-	</header>
-
-	<div>
-		@foreach($posts as $post)
-			{{ $post->id }}
-			{{ $post->user_id }}
-			{{ $post->title }}
-			{{ $post->category_id }}
-			{{ $post->comment }}
-			{{ $post->stars }}
-		@endforeach
-	</div>
-
-<footer class="flex items-center justify-between flex-wrap bg-gray-900 p-4">
-	<div class="flex items-center flex-shrink-0 text-white">Copyright <a href="#">学参レコメンド！</a>. All Rights Reserved.</div>
-</footer>
+			</div>
+	</main>
+	@endsection
 </body>
 </html>
