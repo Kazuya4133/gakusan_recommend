@@ -10,8 +10,10 @@
 <body>
 	@include('commons.header')
 	
-    @yield('content')
+  @include('commons.error_messages')
     
-    @include('commons.footer')
+  @yield('content')
+    
+  @include('commons.footer')
 </body>
 </html>

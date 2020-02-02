@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -13,29 +14,35 @@ class PostController extends Controller
         return view('welcome', compact('posts'));
     }
 
-    public function create()
+    public function create(int $user_id)
     {
-        return view('create');
+        return view('create', compact('user_id'));
     }
 
-    public function store(Request $request)
+    public function store(int $user_id, Request $request)
+    {
+        // これはいる？？
+        $post = Auth::user($user_id);
+
+        $post = new Post();
+
+        return redirect()->route('index', compact('user_id'));
+    }
+
+    public function show(int $user_id, int $post_id)
+    {
+        $post = Post::find($post_id);
+        return view('show', compact('post_id'));
+    }
+
+    public function edit(int $user_id, int $post_id)
     {
 
     }
 
-    public function show($id)
-    {
-        return view('show');
-    }
-
-    public function edit($id)
+    public function update(Request $request, int $id)
     {
 
-    }
-
-    public function update(Request $request, $id)
-    {
-        
     }
 
     public function destroy($id)
