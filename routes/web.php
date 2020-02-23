@@ -27,7 +27,7 @@ Route::post('/users/{user_id}/posts/{posts_id}/show', 'PostController@update');
 
 Route::get('/users/{user_id}', 'UserController@showProf')->name('users.users');
 Route::get('/users/{user_id}/edit', 'UserController@showProfEditForm')->name('users.edit');
-Route::post('/users/{user_id}/edit', 'UserController@edit');
+Route::post('/users/{user_id}/edit', 'UserController@editProf');
 
 
 Auth::routes();
