@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::paginate(3);
+        $posts = Post::paginate(4);
         return view('welcome', compact('posts'));
     }
 

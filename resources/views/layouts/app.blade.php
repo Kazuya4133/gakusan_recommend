@@ -7,13 +7,22 @@
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <title>学参レコメンド！</title>
 </head>
+
 <body>
-	@include('commons.header')
-	
+  @include('commons.header')
+    
   @include('commons.error_messages')
-    
+      
+  <body class="flex flex-col min-h-screen">
+  
+  <main class="flex-grow py-4">
+
   @yield('content')
-    
+  
+  </main>
+  
   @include('commons.footer')
+  
 </body>
+
 </html>
